@@ -27,7 +27,7 @@ O Finance App é uma solução simples para ajudar no controle das suas finança
 yarn add --global expo-cli
 
 2. Clone este repositório:
-git clone https://github.com/seu-usuario/finance-app.git
+git clone https://github.com/yuri3gp/finance-app.git
 
 3. Navegue até o diretório do projeto:
 cd finance-app
