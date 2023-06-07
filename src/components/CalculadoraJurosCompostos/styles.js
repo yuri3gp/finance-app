@@ -3,9 +3,10 @@ import styled from 'styled-components/native';
 const colorPalet = [
   "#FFFFFF",
   "#F8E9E3",
-  "#F4DDD4",
+  "#C75C71",
   "#EFD6CC",
-  "#E1BAAB"
+  "#E1BAAB",
+  "#791127"
 ]
 
 const Container = styled.KeyboardAvoidingView`
@@ -21,6 +22,12 @@ const Heading = styled.Text`
 const Label = styled.Text`
   font-size: 25px;
   font-weight: bold;
+  color : ${colorPalet[5]};
+`;
+
+const LabelResult = styled.Text`
+  font-size: 25px;
+  font-weight: bold;
   color : ${colorPalet[4]};
 `;
 
@@ -30,8 +37,10 @@ const Input = styled.TextInput`
   height: 60px;
   font-size: 50px;
   font-weight: bold;
-  border-radius: 30px;
-  align-items: center;
+  border-radius: 80px;
+  text-align: center; /* Centraliza horizontalmente */
+  text-align-vertical: center;
+  border: 2px solid ${colorPalet[5]};
 `;
 
 const Result = styled.View`
@@ -46,4 +55,4 @@ const Value = styled.Text`
   color : ${colorPalet[0]};
 `;
 
-export { Container, Heading, Label, Input, Result, Value }
+export { Container, Heading, Label, Input, Result, Value, LabelResult }
