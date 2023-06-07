@@ -1,10 +1,10 @@
 import React from 'react';
-import CalculadoraJurosCompostos from './src/components/CalculadoraJurosCompostos'
+import Default from './src/pages/Default'
 
 export default function App() {
   return (
     <>
-      <CalculadoraJurosCompostos/>
+      <Default/>
     </>
   )
 };
