@@ -1,8 +1,33 @@
-import React, { useState, useEffect } from 'react';
-import { View } from 'react-native';
-import { Container, Label, Input, Result,Value } from './styles';
+import React, { useState, useEffect, useRef } from 'react';
+import { View, Keyboard } from 'react-native';
+import { Container, Label, Input, Result, Value, LabelResult } from './styles';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 
 function CalculadoraJurosCompostos() {
+  const initialRef = useRef(null);
+  const jurosRef = useRef(null);
+  const periodRef = useRef(null);
+  const aportRef = useRef(null);
+
+  useEffect(() => {
+    initialRef.current.focus();
+  }, []);
+
+  const focusInput = (ref) => {
+    if (ref === initialRef) {
+      jurosRef.current.focus()
+    }
+    else if (ref === jurosRef) {
+      periodRef.current.focus()
+    }
+    else if (ref === periodRef) {
+      aportRef.current.focus()
+    }
+    else {
+      initialRef.current.focus()
+    }
+  };
+
   const [valorInicial, setValorInicial] = useState(0);
   const [taxaJurosAnual, setTaxaJurosAnual] = useState(0);
   const [periodoAnos, setPeriodoAnos] = useState(0);
@@ -38,10 +63,14 @@ function CalculadoraJurosCompostos() {
     <Container>
       <View>
         <Label>Valor Inicial:</Label>
+
         <Input
           keyboardType="numeric"
           value={valorInicial === 0 ? '' : String(valorInicial)}
           onChangeText={(value) => setValorInicial(Number(value))}
+          ref={initialRef}
+          onSubmitEditing={() => focusInput(initialRef)}
+          blurOnSubmit={false}
         />
       </View>
       <View>
@@ -50,6 +79,9 @@ function CalculadoraJurosCompostos() {
           keyboardType="numeric"
           value={taxaJurosAnual === 0 ? '' : String(taxaJurosAnual)}
           onChangeText={(value) => setTaxaJurosAnual(Number(value))}
+          ref={jurosRef}
+          onSubmitEditing={() => focusInput(jurosRef)}
+          blurOnSubmit={false}
         />
       </View>
       <View>
@@ -58,6 +90,9 @@ function CalculadoraJurosCompostos() {
           keyboardType="numeric"
           value={periodoAnos === 0 ? '' : String(periodoAnos)}
           onChangeText={(value) => setPeriodoAnos(Number(value))}
+          ref={periodRef}
+          onSubmitEditing={() => focusInput(periodRef)}
+          blurOnSubmit={false}
         />
       </View>
       <View>
@@ -66,10 +101,13 @@ function CalculadoraJurosCompostos() {
           keyboardType="numeric"
           value={aporteMensal === 0 ? '' : String(aporteMensal)}
           onChangeText={(value) => setAporteMensal(Number(value))}
+          ref={aportRef}
+          onSubmitEditing={() => focusInput(aportRef)}
+          blurOnSubmit={false}
         />
       </View>
       <Result>
-        <Label>Valor Final:</Label>
+        <LabelResult>Valor Final:</LabelResult>
         <Value>{formatarValorFinal(valorFinal)}</Value>
       </Result>
     </Container>
